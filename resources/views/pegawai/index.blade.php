@@ -22,7 +22,14 @@
                 <td>{{ $p->nama }}</td>
                 <td>{{ $p->jabatan }}</td>
                 <td>{{ $p->divisi->nama }}</td>
-                <td>edit & hapus</td>
+                <td>
+                    <a href="{{ route('pegawai.edit',$p->id) }}">Edit</a>
+                    <form action="{{ route('pegawai.delete',$p->id) }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" onclick="return confirm('Apakah anda yakin ingin menghapus?')">Hapus</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
 

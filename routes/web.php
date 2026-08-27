@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DivisiController;
+use App\Http\Controllers\KartuPegawaiController;
 use App\Http\Controllers\PegawaiController;
 use Illuminate\Support\Facades\Route;
 
@@ -66,3 +67,25 @@ Route::put('/pegawai/{pegawai}',[PegawaiController::class,'update'])->name('pega
 
 // 6.DELETE -> PROSES HAPUS DATA
 Route::delete('/pegawai/{pegawai}',[PegawaiController::class,'delete'])->name('pegawai.delete');
+
+// Route Kartu Pegawai
+// 1. Read
+Route::get('/kartu-pegawai',[KartuPegawaiController::class,'index'])->name('kartu-pegawai.index');
+
+// 2.Create -> menampilkan halaman create
+Route::get('/kartu-pegawai/create',[KartuPegawaiController::class,'create'])->name('kartu-pegawai.create');
+
+// 3.create -> proses tambah kartu pegawai
+Route::post('/kartu-pegawai',[KartuPegawaiController::class,'store'])->name('kartu-pegawai.store');
+
+// 4.Update -> menampilkan halaman edit
+Route::get('/kartu-pegawai/edit/{kartu-pegawai}',[KartuPegawaiController::class,'edit'])
+->name('kartu-pegawai.edit');
+
+// 5. update -> proses edit kartu
+Route::put('/kartu-pegawai/{kartu-pegawai}',[KartuPegawaiController::class,'update'])
+->name('kartu-pegawai.update');
+
+// 6,Delete
+Route::delete('/kartu-pegawai/{kartu-pegawai}',[KartuPegawaiController::class,'delete'])
+->name('kartu-pegawai.delete');

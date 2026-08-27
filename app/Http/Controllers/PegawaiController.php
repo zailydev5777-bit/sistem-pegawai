@@ -28,5 +28,29 @@ class PegawaiController extends Controller
         Pegawai::create($r->all());
         return redirect()->route('pegawai.index');
     }
+
+    public function edit(Pegawai $pegawai){
+        $divisi = Divisi::all();
+
+        return view('pegawai.edit',compact('divisi','pegawai'));
+    }
+
+    public function update(Request $r,Pegawai $pegawai){
+        $r->validate([
+            'nama'=>'required',
+            'jabatan'=>'required',
+            'divisi_id'=>'required|exists:divisis,id'
+        ]);
+
+        $pegawai->update($r->all());
+
+        return redirect()->route('pegawai.index');
+    }
+
+    public function delete(Pegawai $pegawai){
+        $pegawai->delete();
+        return redirect()->route('pegawai.index');
+    }
+    
     
 }
